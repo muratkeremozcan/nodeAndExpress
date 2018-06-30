@@ -1,0 +1,52 @@
+{
+  "name": "nb-api",
+  "version": "2.0.0",
+  "description": "Building Operator IC Northbound API",
+  "main": "server.js",
+  "scripts": {
+    "migrate": "sequelize db:migrate",
+    "lint": "jshint api/ test/ server-config.js server-logger.js server.js && jscs api/ test/ server-config.js server-logger.js server.js && yamllint api/api.yml .gitlab-ci.yml templates/*.yml",
+    "test": "istanbul cover --dir reports/coverage --report html node_modules/mocha/bin/_mocha -- test/**/*.spec.js --exit",
+    "start": "sequelize db:migrate && node server.js"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "express",
+    "sql"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://code.siemens.com/horizon/facility-manager-ba/nb-api"
+  },
+  "author": "Shaun Finnerty",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "compression": "^1.7.2",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.0",
+    "helmet": "^3.9.0",
+    "jwks-rsa": "^1.2.1",
+    "lodash": "^4.17.4",
+    "mysql2": "^1.5.1",
+    "querystring": "^0.2.0",
+    "sequelize": "^4.32.1",
+    "sequelize-cli": "^3.2.0",
+    "swagger-express-middleware": "^1.0.0-alpha.12",
+    "swagger-parser": "^4.0.2",
+    "unirest": "^0.5.1",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "istanbul": "^1.1.0-alpha.1",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.5",
+    "mocha": "^5.0.0",
+    "nock": "^9.1.6",
+    "yaml-lint": "^1.0.0"
+  }
+}

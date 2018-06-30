@@ -1,0 +1,18 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost:8080');
+  socket.on('messages', function(data){ //  listen for messages events
+     alert(data.hello); // when we get messages event, alert
+     insertMessage(data); // insert message into chat
+  });
+  $('#chat_form').submit(function(e){
+    var message = $('#chat_input').val();
+    socket.emit('messages', message); // emit the message they type
+  });
+  var server = io.connect('http://localhost:8080');
+  server.on('connect', function(data) { // when connected to server
+    $('#status').html('connected to chatter'); // print out status
+    nickname = prompt('What is your nickname'); // prompt the user
+    server.emit('join', nickname); // take the value and emit the join event
+  }); // sending in the nickname back to the server
+</script>
